@@ -34,7 +34,14 @@ const Profile = () => {
   });
 
   const runBodysegment = async () => {
-    const net = await bodyPix.load();
+    const net = await bodyPix.load({
+      architecture: 'ResNet50',
+      outputStride: 16,
+      quantBytes: 4,
+      maxDetections: 10,
+      scoreThreshold: 0.3
+
+    });
     console.log("BodyPix model loaded.");
     detect(net);
   };
@@ -48,7 +55,11 @@ const Profile = () => {
     canvasRef.current.width = 640;
     canvasRef.current.height = 480;
 
-    const person = await net.segmentPersonParts(imageRef.current);
+    const person = await net.segmentPersonParts(imageRef.current, {
+      internalResolution: 'full',
+      segmentationThreshold: 0.4
+    });
+
 
     const nose = person.allPoses[0].keypoints[0].position;
     const leftEye = person.allPoses[0].keypoints[1].position;

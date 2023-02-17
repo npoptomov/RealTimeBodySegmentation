@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mediapipe/selfie_segmentation": "^0.1.1675465747",
     "@tensorflow-models/body-pix": "^2.2.0",
+    "@tensorflow-models/body-segmentation": "^1.0.1",
     "@tensorflow/tfjs": "^2.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
